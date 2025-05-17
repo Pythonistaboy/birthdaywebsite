@@ -1,7 +1,73 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: nowrap; /* make sure it stays side by side */
+    }
+
+    .column {
+      width: 50%;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+
+    .column img {
+      width: 100%;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-wrap: wrap;
+      }
+
+      .column {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
 <body>
-<img src="photo1.jpeg">
+
+<div class="row"> 
+  <div class="column">
+    <img src="photo1.jpeg">
+    <img src="photo2.JPG">
+    <img src="photo3.JPG">
+    <img src="photo4.JPG">
+    <img src="photo11.JPG">
+    <img src="photo12.JPG">
+    <img src="photo13.JPG">
+    <img src="photo14.JPG">
+    <img src="photo17.JPG">
+    <img src="photo16.JPG">
+    <img src="photo18.jpeg">
+    <img src="photo19.jpeg">
+    <img src="photo24.jpeg">
+  </div>
+  <div class="column">
+    <img src="photo5.JPG">
+    <img src="photo6.JPG">
+    <img src="photo7.JPG">
+    <img src="photo8.JPG">
+    <img src="photo9.JPG">
+    <img src="photo10.JPG">
+    <img src="photo15.JPG">
+    <img src="photo20.JPG">
+    <img src="photo21.jpeg">
+    <img src="photo22.jpeg">
+    <img src="photo23.jpeg">
+  </div>
+</div>
 
 </body>
 </html>
