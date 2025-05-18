@@ -6,11 +6,14 @@
     body {
       margin: 0;
       padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
     }
 
     .row {
       display: flex;
-      flex-wrap: nowrap; /* make sure it stays side by side */
+      flex-wrap: nowrap;
     }
 
     .column {
@@ -19,10 +22,36 @@
       box-sizing: border-box;
     }
 
-    .column img {
+    .image-container {
+      position: relative;
       width: 100%;
       margin-bottom: 8px;
+    }
+
+    .image-container img {
+      width: 100%;
       display: block;
+      border-radius: 6px;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease, text-shadow 0.3s ease;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      text-shadow: none;
+    }
+
+    .image-container:hover .caption {
+      opacity: 1;
+      text-shadow: 0 0 8px #ffffff, 0 0 16px #ffffff, 0 0 24px #00ffff;
     }
 
     @media (max-width: 768px) {
@@ -40,32 +69,184 @@
 
 <div class="row"> 
   <div class="column">
-    <img src="photo1.jpeg">
-    <img src="photo2.JPG">
-    <img src="photo3.JPG">
-    <img src="photo4.JPG">
-    <img src="photo11.JPG">
-    <img src="photo12.JPG">
-    <img src="photo13.PNG">
-    <img src="photo17.JPG">
-    <img src="photo16.JPG">
-    <img src="photo18.jpeg">
-    <img src="photo19.jpeg">
-    <img src="photo24.jpeg">
+    <div class="image-container">
+      <img src="photo1.jpeg">
+      <div class="caption">School trip to the zoo</div>
+    </div>
+    <div class="image-container">
+      <img src="photo2.JPG">
+      <div class="caption">Chillin’ with the squad</div>
+    </div>
+    <div class="image-container">
+      <img src="photo3.JPG">
+      <div class="caption">Basketball finals 🏀</div>
+    </div>
+    <div class="image-container">
+      <img src="photo4.JPG">
+      <div class="caption">End of term party 🎉</div>
+    </div>
+    <div class="image-container">
+      <img src="photo11.JPG">
+      <div class="caption">Art project complete 🎨</div>
+    </div>
+    <div class="image-container">
+      <img src="photo12.JPG">
+      <div class="caption">Cafeteria chaos</div>
+    </div>
   </div>
+
   <div class="column">
-    <img src="photo5.JPG">
-    <img src="photo6.JPG">
-    <img src="photo7.JPG">
-    <img src="photo8.JPG">
-    <img src="photo9.JPG">
-    <img src="photo10.JPG">
-    <img src="photo15.JPG">
-    <img src="photo20.JPG">
-    <img src="photo21.jpeg">
-    <img src="photo22.jpeg">
-    <img src="photo23.jpeg">
-    <img src="photo14.PNG">
+    <div class="image-container">
+      <img src="photo5.JPG">
+      <div class="caption">Excursion to the city</div>
+    </div>
+    <div class="image-container">
+      <img src="photo6.JPG">
+      <div class="caption">Besties forever ❤️</div>
+    </div>
+    <div class="image-container">
+      <img src="photo7.JPG">
+      <div class="caption">Sports day madness</div>
+    </div>
+    <div class="image-container">
+      <img src="photo8.JPG">
+      <div class="caption">Secret hangout spot</div>
+    </div>
+    <div class="image-container">
+      <img src="photo9.JPG">
+      <div class="caption">Caught in the act 😂</div>
+    </div>
+    <div class="image-container">
+      <img src="photo10.JPG">
+      <div class="caption">Just vibes 🎶</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .column {
+      width: 50%;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .image-container img {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease, text-shadow 0.3s ease;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      text-shadow: none;
+    }
+
+    .image-container:hover .caption {
+      opacity: 1;
+      text-shadow: 0 0 8px #ffffff, 0 0 16px #ffffff, 0 0 24px #00ffff;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-wrap: wrap;
+      }
+
+      .column {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="row"> 
+  <div class="column">
+    <div class="image-container">
+      <img src="photo1.jpeg">
+      <div class="caption">Need more of those nights fs</div>
+    </div>
+    <div class="image-container">
+      <img src="photo2.JPG">
+      <div class="caption">idk</div>
+    </div>
+    <div class="image-container">
+      <img src="photo3.JPG">
+      <div class="caption">Peeka boo</div>
+    </div>
+    <div class="image-container">
+      <img src="photo4.JPG">
+      <div class="caption">Oh...</div>
+    </div>
+    <div class="image-container">
+      <img src="photo11.JPG">
+      <div class="caption">Goofy Moonkeehh</div>
+    </div>
+    <div class="image-container">
+      <img src="photo12.JPG">
+      <div class="caption">Trial and Error🤦‍♂️</div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="image-container">
+      <img src="photo5.JPG">
+      <div class="caption">Hi</div>
+    </div>
+    <div class="image-container">
+      <img src="photo6.JPG">
+      <div class="caption">Funky Afrooo🔥🔥🔥</div>
+    </div>
+    <div class="image-container">
+      <img src="photo7.JPG">
+      <div class="caption">Sports day madness</div>
+    </div>
+    <div class="image-container">
+      <img src="photo8.JPG">
+      <div class="caption">Secret hangout spot</div>
+    </div>
+    <div class="image-container">
+      <img src="photo9.JPG">
+      <div class="caption">Caught in the act 😂</div>
+    </div>
+    <div class="image-container">
+      <img src="photo10.JPG">
+      <div class="caption">Just vibes 🎶</div>
+    </div>
   </div>
 </div>
 
