@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moments 📸</title>
   <style>
     body {
       margin: 0;
@@ -9,6 +10,12 @@
       font-family: Arial, sans-serif;
       background-color: #111;
       color: white;
+    }
+
+    .blurred {
+      filter: blur(37px);
+      pointer-events: none;
+      user-select: none;
     }
 
     .row {
@@ -63,115 +70,113 @@
         width: 100%;
       }
     }
+
+    #loginModal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f1f1f1;
+      color: black;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      z-index: 9999;
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #999;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #errorMsg {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-<div class="row"> 
-  <div class="column">
-    <div class="image-container">
-      <img src="photo1.jpeg">
-      <div class="caption">ik and im sorry, next time ill get closer #socialdistancing</div>
-    </div>
-    <div class="image-container">
-      <img src="photo2.JPG">
-      <div class="caption">need more of these nights ong</div>
-    </div>
-    <div class="image-container">
-      <img src="photo3.JPG">
-      <div class="caption">Peeka boo</div>
-    </div>
-    <div class="image-container">
-      <img src="photo4.JPG">
-      <div class="caption">Oh...</div>
-    </div>
-    <div class="image-container">
-      <img src="photo11.JPG">
-      <div class="caption">Goofy Moonkeehh</div>
-    </div>
-    <div class="image-container">
-      <img src="photo12.JPG">
-      <div class="caption">Trial and Error🤦‍♂️</div>
-    </div>
-    <div class="image-container">
-      <img src="photo15.JPG">
-      <div class="caption">GUDETAMAAAAA</div>
-    </div>
-    <div class="image-container">
-      <img src="photo17.JPG">
-      <div class="caption">New seat unlocked</div>
-    </div>
-      <div class="image-container">
-        <img src="photo16.JPG">
-        <div class="caption">#lily+yhonashlonktime</div>
-      </div>
-    <div class="image-container">
-        <img src="photo18.jpeg">
-        <div class="caption">#shlonktime</div>
-        </div>
-    <div class="image-container">
-        <img src="photo19.jpeg">
-        <div class="caption">Yhona: pls snap me 🙏</div>
-        </div>
-        <div class="image-container">
-        <img src="photo22.jpeg">
-        <div class="caption">hi</div>
-        </div>
-    <div class="image-container">
-        <img src="photo23.jpeg">
-        <div class="caption">best night in a long time</div>
-        </div>
+<div id="loginModal">
+  <h2>Authentication Required</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="checkLogin()">Login</button>
+  <p id="errorMsg">Incorrect username or password</p>
+</div>
 
-  </div>
+<div id="galleryContent" class="blurred">
+  <div class="row"> 
+    <div class="column">
+      <!-- LEFT COLUMN -->
+      <div class="image-container"><img src="photo1.jpeg"><div class="caption">ik and im sorry, next time ill get closer #socialdistancing</div></div>
+      <div class="image-container"><img src="photo2.JPG"><div class="caption">need more of these nights ong</div></div>
+      <div class="image-container"><img src="photo3.JPG"><div class="caption">Peeka boo</div></div>
+      <div class="image-container"><img src="photo4.JPG"><div class="caption">Oh...</div></div>
+      <div class="image-container"><img src="photo11.JPG"><div class="caption">Goofy Moonkeehh</div></div>
+      <div class="image-container"><img src="photo12.JPG"><div class="caption">Trial and Error🤦‍♂️</div></div>
+      <div class="image-container"><img src="photo15.JPG"><div class="caption">GUDETAMAAAAA</div></div>
+      <div class="image-container"><img src="photo17.JPG"><div class="caption">New seat unlocked</div></div>
+      <div class="image-container"><img src="photo16.JPG"><div class="caption">#lily+yhonashlonktime</div></div>
+      <div class="image-container"><img src="photo18.jpeg"><div class="caption">#shlonktime</div></div>
+      <div class="image-container"><img src="photo19.jpeg"><div class="caption">Yhona: pls snap me 🙏</div></div>
+      <div class="image-container"><img src="photo22.jpeg"><div class="caption">hi</div></div>
+      <div class="image-container"><img src="photo23.jpeg"><div class="caption">best night in a long time</div></div>
+    </div>
 
-  <div class="column">
-    <div class="image-container">
-      <img src="photo5.JPG">
-      <div class="caption">Hi</div>
+    <div class="column">
+      <!-- RIGHT COLUMN -->
+      <div class="image-container"><img src="photo5.JPG"><div class="caption">Hi</div></div>
+      <div class="image-container"><img src="photo6.JPG"><div class="caption">Funky Afrooo🔥🔥🔥</div></div>
+      <div class="image-container"><img src="photo7.JPG"><div class="caption">"ewwwww"</div></div>
+      <div class="image-container"><img src="photo8.JPG"><div class="caption">yummmy😋</div></div>
+      <div class="image-container"><img src="photo9.JPG"><div class="caption">cheeky pic</div></div>
+      <div class="image-container"><img src="photo10.JPG"><div class="caption">yk i dont like the filters</div></div>
+      <div class="image-container"><img src="photo13.PNG"><div class="caption">"i look so sexy" - Lily</div></div>
+      <div class="image-container"><img src="photo14.PNG"><div class="caption">sheesh hold your horses</div></div>
+      <div class="image-container"><img src="photo20.JPG"><div class="caption">hey</div></div>
+      <div class="image-container"><img src="photo21.jpeg"><div class="caption">hmmmm yummmy😋</div></div>
+      <div class="image-container"><img src="photo24.jpeg"><div class="caption">hellowww</div></div>
     </div>
-    <div class="image-container">
-      <img src="photo6.JPG">
-      <div class="caption">Funky Afrooo🔥🔥🔥</div>
-    </div>
-    <div class="image-container">
-      <img src="photo7.JPG">
-      <div class="caption">"ewwwww"</div>
-    </div>
-    <div class="image-container">
-      <img src="photo8.JPG">
-      <div class="caption">yummmy😋</div>
-    </div>
-    <div class="image-container">
-      <img src="photo9.JPG">
-      <div class="caption">cheeky pic</div>
-    </div>
-    <div class="image-container">
-      <img src="photo10.JPG">
-      <div class="caption">yk i dont like the filters</div>
-    </div>
-    <div class="image-container">
-      <img src="photo13.PNG">
-      <div class="caption">"i look so sexy" - Lily</div>
-    </div>
-    <div class="image-container">
-        <img src="photo14.PNG">
-        <div class="caption">sheesh hold your horses</div>
-    </div>
-    <div class="image-container">
-        <img src="photo20.JPG">
-        <div class="caption">hey</div>
-        </div>
-    <div class="image-container">
-        <img src="photo21.jpeg">
-        <div class="caption">hmmmm yummmy😋</div>
-        </div>
-        <div class="image-container">
-        <img src="photo24.jpeg">
-        <div class="caption">hellowww</div>
-        </div>
-
   </div>
 </div>
+
+<script>
+  const correctUsername = "lily";
+  const correctPassword = "shlonktimeisprecious";
+
+  function checkLogin() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if (user === correctUsername && pass === correctPassword) {
+      document.getElementById("loginModal").style.display = "none";
+      document.getElementById("galleryContent").classList.remove("blurred");
+    } else {
+      document.getElementById("errorMsg").style.display = "block";
+    }
+  }
+</script>
 
 </body>
 </html>
