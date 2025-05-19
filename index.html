@@ -136,5 +136,22 @@ Your browser does not support the audio element.
   </div>
 </div>
 
+<script>
+  const correctUsername = "lily";
+  const correctPassword = "shlonktimeisprecious";
+
+  function checkLogin() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if (user === correctUsername && pass === correctPassword) {
+      document.getElementById("loginModal").style.display = "none";
+      document.getElementById("galleryContent").classList.remove("blurred");
+    } else {
+      document.getElementById("errorMsg").style.display = "block";
+    }
+  }
+</script>
+
 </body>
 </html>
