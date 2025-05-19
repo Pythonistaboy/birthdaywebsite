@@ -1,4 +1,4 @@
 [[headers]]
-  for = "/"
+  for = "/*"
   [headers.values]
     Basic-Auth = "genius 1234"
