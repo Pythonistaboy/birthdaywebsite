@@ -1,16 +1,6 @@
 
 
-collection of different cards:
 
-two diff columns: one customised for lily and one for yhona
-you can add cards
-
-e.g: lily brithday morning 14thof may 2025
-e.g: open when you are bored
-e.g: open when you want a hug
-e.g: open when you want a snap from yhona
-
-(involve supabase)
 
 
 <!DOCTYPE html>
@@ -27,6 +17,55 @@ e.g: open when you want a snap from yhona
         background: #fff;
         padding-top: 100px;
     }
+
+    #loginModal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f1f1f1;
+      color: black;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      z-index: 9999;
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #999;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #errorMsg {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+
+    .blurred {
+      filter: blur(37px);
+      pointer-events: none;
+      user-select: none;
+    }
     
     .container {
       display: flex;
@@ -36,14 +75,6 @@ e.g: open when you want a snap from yhona
       height: 100%;
       width: 100%;
       padding-left: 20px;
-    }
-    
-    .button {
-        background-color: white;
-        border: none;
-        animation: GFG 10s infinite linear;
-        padding-top: 500px;
-        cursor: pointer;
     }
     .idk {
         background-color: #FF819F;
@@ -102,7 +133,29 @@ e.g: open when you want a snap from yhona
     </head>
     
     <body>
+
+      <div id="loginModal">
+  <h2>Authentication Required</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="checkLogin()">Login</button>
+  <p id="errorMsg">Incorrect username or password</p>
+</div>
+<div id="galleryContent" class="blurred">
     <div class="container">
+      <p>collection of different cards:
+
+two diff columns: one customised for lily and one for yhona
+you can add cards
+
+e.g: lily brithday morning 14thof may 2025
+e.g: open when you are bored
+e.g: open when you want a hug
+e.g: open when you want a snap from yhona
+
+(involve supabase)
+
+</p>
     
     <button onclick="letterView()" class="button" style="font-size:24px">
         <i class="fa fa-heart" style="font-size:48px;color:red"></i>
@@ -135,6 +188,7 @@ e.g: open when you want a snap from yhona
     </div>
     
     </div>
+    </div>
     
     <script>
     function letterView() {
@@ -150,6 +204,25 @@ e.g: open when you want a snap from yhona
           alert("Click 'OK' to officially admit that Yhona loves you more than you love him. The war is over. Yhona wins. MWAHAHAA!");
       }
   </script>  
+
+
+
+<script>
+  const correctUsername = "lily";
+  const correctPassword = "shlonktimeisprecious";
+
+  function checkLogin() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if (user === correctUsername && pass === correctPassword) {
+      document.getElementById("loginModal").style.display = "none";
+      document.getElementById("galleryContent").classList.remove("blurred");
+    } else {
+      document.getElementById("errorMsg").style.display = "block";
+    }
+  }
+</script>
     
     </body>
     </html>

@@ -3,10 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<audio controls autoplay>
-  <source src="air.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
 
   <title>Us 💖</title>
   <style>
@@ -18,6 +14,44 @@ Your browser does not support the audio element.
       font-family: 'Poppins', sans-serif;
       height: 100vh;
       overflow: hidden;
+    }
+
+        .blurred {
+      filter: blur(37px);
+      pointer-events: none;
+      user-select: none;
+    }
+     #loginModal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f1f1f1;
+      color: black;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      z-index: 9999;
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #999;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #errorMsg {
+      color: red;
+      font-size: 0.9em;
+      display: none;
     }
 
     @keyframes gradientShift {
@@ -50,6 +84,16 @@ Your browser does not support the audio element.
       display: inline-block;
     }
 
+   button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
     .btn:hover {
       background-color: rgba(255, 255, 255, 0.25);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
@@ -71,7 +115,18 @@ Your browser does not support the audio element.
 </head>
 <body>
 
-
+  <div id="loginModal">
+  <h2>Authentication Required</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="checkLogin()">Login</button>
+  <p id="errorMsg">Incorrect username or password</p>
+</div>
+<div id="galleryContent" class="blurred">
+<audio controls autoplay>
+  <source src="air.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
   <div class="container">
         <h1 style="color:white;">Lily, Welcome to Our Little Space ;)</h1>
     <div style="font-size: 2.5rem; animation: pulse 2s infinite;">❤️</div>
@@ -79,6 +134,7 @@ Your browser does not support the audio element.
     <a href="time.html" target="_blank" class="btn">⏱️ Timeline</a>
     <a href="moments.html" target="_blank" class="btn">📸 Moments</a>
   </div>
+</div>
 
 </body>
 </html>
