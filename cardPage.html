@@ -7,6 +7,7 @@
 <html>
     <head>
     <title>To my Lily, I love you</title>
+    <script src="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14bWNibG1oZWF5cHJwa2FveWt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTE2MTUsImV4cCI6MjA2MzM2NzYxNX0.3qoxj7i4z9U3VdiS04IEc58ClcZ3TzZI2rqVbSXe5Oc"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -222,6 +223,65 @@ e.g: open when you want a snap from yhona
       document.getElementById("errorMsg").style.display = "block";
     }
   }
+</script>
+
+<script>
+  const supabaseUrl = 'https://mxmcblmheayprpkaoykx.supabase.co'; // replace with yours
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14bWNibG1oZWF5cHJwa2FveWt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTE2MTUsImV4cCI6MjA2MzM2NzYxNX0.3qoxj7i4z9U3VdiS04IEc58ClcZ3TzZI2rqVbSXe5Oc'; // replace with yours
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+
+    async function loadItems() {
+      const { data, error } = await supabase
+        .from('bucket_list')
+        .select('*')
+        .order('created_at', { ascending: true });
+
+      const notDone = document.getElementById('not-done-list');
+      const done = document.getElementById('done-list');
+      notDone.innerHTML = '';
+      done.innerHTML = '';
+
+      data.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <label>
+            <input type="checkbox" ${item.completed ? 'checked' : ''} onchange="toggleCompleted('${item.id}', ${item.completed})">
+            ${item.title}
+          </label>
+        `;
+
+        if (item.completed) {
+          done.appendChild(div);
+        } else {
+          notDone.appendChild(div);
+        }
+      });
+    }
+
+    async function toggleCompleted(id, currentState) {
+      const { error } = await supabase
+        .from('bucket_list')
+        .update({
+          completed: !currentState,
+          completed_at: !currentState ? new Date().toISOString() : null
+        })
+        .eq('id', id);
+      loadItems();
+    }
+
+    async function addItem() {
+      const input = document.getElementById('new-item');
+      const title = input.value.trim();
+      if (!title) return;
+      await supabase.from('bucket_list').insert([{ title, completed: false }]);
+      input.value = '';
+      loadItems();
+    }
+
+    loadItems();
+
 </script>
     
     </body>
