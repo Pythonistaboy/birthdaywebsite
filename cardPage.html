@@ -233,7 +233,7 @@ e.g: open when you want a snap from yhona
 
     async function loadItems() {
       const { data, error } = await supabase
-        .from('bucket_list')
+        .from('bucketlist')
         .select('*')
         .order('created_at', { ascending: true });
 

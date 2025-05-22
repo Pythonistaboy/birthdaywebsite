@@ -1,32 +1,158 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Supabase Test Insert</title>
+  <title>Bucket List 🪣</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #ff9a9e);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      font-family: 'Quicksand', sans-serif;
+      color: #4b2e2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      color: #a05278;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 12px 16px;
+      border: 2px solid #ffb6c1;
+      border-radius: 8px;
+      width: 250px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #f49ab5;
+    }
+
+    ul {
+      margin-top: 30px;
+      list-style: none;
+      padding: 0;
+      width: 300px;
+    }
+
+    li {
+      background-color: #ffe4e1;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      transition: background 0.3s ease;
+    }
+
+    li:hover {
+      background-color: #fcdcdc;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+      border-color: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #ff9a9e);
+    }
+  </style>
 </head>
 <body>
 
-<button onclick="insertTest()">Insert Test Item</button>
+  <h1>Our Bucket List 💗</h1>
 
-<script>
-  const supabaseUrl = "https://mxmcblmheayprpkaoykx.supabase.co"; // your URL
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14bWNibG1oZWF5cHJwa2FveWt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTE2MTUsImV4cCI6MjA2MzM2NzYxNX0.3qoxj7i4z9U3VdiS04IEc58ClcZ3TzZI2rqVbSXe5Oc'; // replace with your anon/public key
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  <input type="text" id="myText" placeholder="Add a thing to do...">
+  <button onclick="insertTest()">Add</button>
 
-  async function insertTest() {
-    const { data, error } = await supabase
-      .from('bucketlist')
-      .insert([{ title: 'test', completed: false }]);
+  <ul id="todoList"></ul>
 
-    if (error) {
-      console.error('Insert error:', error);
-      alert('Insert failed: ' + error.message);
-    } else {
-      console.log('Insert successful:', data);
-      alert('Insert successful!');
+  <script>
+    const supabaseUrl = "https://mxmcblmheayprpkaoykx.supabase.co";
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14bWNibG1oZWF5cHJwa2FveWt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTE2MTUsImV4cCI6MjA2MzM2NzYxNX0.3qoxj7i4z9U3VdiS04IEc58ClcZ3TzZI2rqVbSXe5Oc';
+
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function insertTest() {
+      const x = document.getElementById("myText").value;
+      if (!x) return;
+      const { error } = await supabaseClient
+        .from("bucketlist")
+        .insert([{ title: x, completed: false }]);
+
+      if (!error) {
+        document.getElementById("myText").value = "";
+        await fetchBucketList();
+      } else {
+        alert("Insert error: " + error.message);
+      }
     }
-  }
-</script>
+
+    async function fetchBucketList() {
+      const list = document.getElementById("todoList");
+      list.innerHTML = "";
+
+      const { data, error } = await supabaseClient
+        .from("bucketlist")
+        .select("id, title, completed");
+
+      if (error) {
+        console.error("Fetch error:", error.message);
+        return;
+      }
+
+      data.forEach((item) => {
+        const li = document.createElement("li");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = item.completed;
+        checkbox.onchange = () => handleCheck(item.id, checkbox.checked);
+
+        li.appendChild(checkbox);
+        li.appendChild(document.createTextNode(" " + item.title));
+        list.appendChild(li);
+      });
+    }
+
+    async function handleCheck(id, isChecked) {
+      if (isChecked) {
+        await supabaseClient.from("bucketlist").delete().eq("id", id);
+      } else {
+        await supabaseClient
+          .from("bucketlist")
+          .update({ completed: false })
+          .eq("id", id);
+      }
+
+      await fetchBucketList();
+    }
+
+    window.onload = fetchBucketList;
+  </script>
 
 </body>
 </html>
